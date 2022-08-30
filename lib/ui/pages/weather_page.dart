@@ -4,6 +4,7 @@ import 'package:flutter_staggered_grid_view/flutter_staggered_grid_view.dart';
 import 'package:geolocator/geolocator.dart';
 import 'package:provider/provider.dart';
 import 'package:weather_forecast/provider/weather_provider.dart';
+import 'package:weather_forecast/ui/pages/settings_page.dart';
 import 'package:weather_forecast/utils/constants.dart';
 import 'package:weather_forecast/utils/location_utils.dart';
 import 'package:weather_forecast/utils/text_styles.dart';
@@ -27,7 +28,6 @@ class _WeatherPageState extends State<WeatherPage> {
 
   @override
   void didChangeDependencies() {
-    // TODO: implement didChangeDependencies
     if (isFirst) {
       weatherProvider = Provider.of<WeatherProvider>(context);
       _getData();
@@ -63,6 +63,37 @@ class _WeatherPageState extends State<WeatherPage> {
       appBar: AppBar(
         backgroundColor: Colors.transparent,
         elevation: 0,
+        actions: [
+          IconButton(
+              onPressed: () {
+                _getData();
+              },
+              icon: const Icon(
+                Icons.my_location,
+                color: Colors.black38,
+              )),
+          IconButton(
+              onPressed: () async {
+                final result = await showSearch(
+                    context: context, delegate: _CitySearchDelegate());
+                if (result != null && result.isNotEmpty) {
+                  // print(result);
+                  weatherProvider.convertAddressToLatLong(result);
+                }
+              },
+              icon: const Icon(
+                Icons.search,
+                color: Colors.black38,
+              )),
+          IconButton(
+              onPressed: () {
+                Navigator.pushNamed(context, SettingsPage.routeName);
+              },
+              icon: const Icon(
+                Icons.settings,
+                color: Colors.black38,
+              )),
+        ],
       ),
       body: Stack(
         children: [
