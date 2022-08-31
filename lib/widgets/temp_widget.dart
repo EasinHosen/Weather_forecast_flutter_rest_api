@@ -45,7 +45,7 @@ class TempWidget extends StatelessWidget {
               Text(
                   'min: ${responseCurrent!.main!.tempMin!.round()}$degree${weatherProvider.unitSymbol}'),
               Text(
-                  'max: ${responseCurrent!.main!.tempMin!.round()}$degree${weatherProvider.unitSymbol}'),
+                  'max: ${responseCurrent!.main!.tempMax!.round()}$degree${weatherProvider.unitSymbol}'),
             ],
           ),
         ),
