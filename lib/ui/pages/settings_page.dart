@@ -11,25 +11,25 @@ class SettingsPage extends StatefulWidget {
 }
 
 class _SettingsPageState extends State<SettingsPage> {
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Settings'),
+        title: const Text('Settings'),
       ),
       body: Consumer<WeatherProvider>(
-        builder:(context, provider, child) => ListView(
-          padding: EdgeInsets.all(8),
+        builder: (context, provider, child) => ListView(
+          padding: const EdgeInsets.all(8),
           children: [
             SwitchListTile(
-              title: const Text('Show temp in Fahrenheit'),
-                value: provider.isFahrenheit,
-                onChanged: (val)async {
-                  provider.setTempUnit(val);
-                  await provider.setPreferenceTempUitValue(val);
-                  provider.getWeatherData();
-                },),
+              title: const Text('Set unit to Imperial'),
+              value: provider.isFahrenheit,
+              onChanged: (val) async {
+                provider.setTempUnit(val);
+                await provider.setPreferenceTempUitValue(val);
+                provider.getWeatherData();
+              },
+            ),
           ],
         ),
       ),

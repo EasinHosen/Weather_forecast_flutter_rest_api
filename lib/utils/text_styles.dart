@@ -24,6 +24,11 @@ const txtNormal16 = TextStyle(
   color: Colors.white,
 );
 
+const txtNormal12 = TextStyle(
+  fontSize: 12,
+  color: Colors.white,
+);
+
 const txtHeader20 = TextStyle(
   fontSize: 20,
   color: Colors.white,

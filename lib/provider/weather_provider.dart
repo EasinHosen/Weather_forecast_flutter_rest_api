@@ -15,6 +15,7 @@ class WeatherProvider extends ChangeNotifier {
   double latitude = 0.0, longitude = 0.0;
   String unit = metric;
   String unitSymbol = celsius;
+  String windSpeed = windSpeedMetric;
 
   bool get hasDataLoaded =>
       currentResponseModel != null && forecastResponseModel != null;
@@ -39,11 +40,10 @@ class WeatherProvider extends ChangeNotifier {
       final response = await get(uri);
       final map = jsonDecode(response.body);
 
-      print(response.body);
+      // print(response.body);
 
       if (response.statusCode == 200) {
         currentResponseModel = CurrentResponseModel.fromJson(map);
-        print(currentResponseModel!.main!.temp!);
         notifyListeners();
       } else {
         print(map['message']);
@@ -75,6 +75,7 @@ class WeatherProvider extends ChangeNotifier {
   void setTempUnit(bool tag) {
     unit = tag ? imperial : metric;
     unitSymbol = tag ? fahrenheit : celsius;
+    windSpeed = tag ? windSpeedImperial : windSpeedMetric;
     notifyListeners();
   }
 

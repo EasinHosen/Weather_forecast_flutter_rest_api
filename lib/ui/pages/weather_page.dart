@@ -57,6 +57,7 @@ class _WeatherPageState extends State<WeatherPage> {
   @override
   Widget build(BuildContext context) {
     final responseCurrent = weatherProvider.currentResponseModel;
+    final responseForecast = weatherProvider.forecastResponseModel;
 
     return Scaffold(
       extendBodyBehindAppBar: true,
@@ -116,63 +117,61 @@ class _WeatherPageState extends State<WeatherPage> {
               ? Padding(
                   padding: const EdgeInsets.symmetric(horizontal: 8.0),
                   child: SafeArea(
-                    child: Column(
+                    child: StaggeredGrid.count(
+                      crossAxisCount: 2,
                       children: [
-                        StaggeredGrid.count(
-                          crossAxisCount: 2,
-                          mainAxisSpacing: 20,
-                          children: [
-                            StaggeredGridTile.count(
-                              crossAxisCellCount: 1,
-                              mainAxisCellCount: 2.2,
-                              child: Card(
-                                color: Colors.blue.withOpacity(0.1),
-                                // elevation: 5,
-                                shape: RoundedRectangleBorder(
-                                  borderRadius: BorderRadius.circular(15),
-                                ),
-                                child: DetailsWidget(
-                                    responseCurrent: responseCurrent),
-                              ),
-                            ), //details widget
-                            StaggeredGridTile.count(
-                              crossAxisCellCount: 1,
-                              mainAxisCellCount: 1.1,
-                              child: Card(
-                                color: Colors.red.withOpacity(0.2),
-                                // elevation: 5,
-                                shape: RoundedRectangleBorder(
-                                    borderRadius: BorderRadius.circular(15)),
-                                child: TempWidget(
-                                  responseCurrent: responseCurrent,
-                                ),
-                              ),
+                        StaggeredGridTile.count(
+                          crossAxisCellCount: 1,
+                          mainAxisCellCount: 2.4,
+                          child: Card(
+                            color: Colors.blue.withOpacity(0.1),
+                            // elevation: 5,
+                            shape: RoundedRectangleBorder(
+                              borderRadius: BorderRadius.circular(15),
                             ),
-                            StaggeredGridTile.count(
-                              crossAxisCellCount: 1,
-                              mainAxisCellCount: 1.1,
-                              child: Card(
-                                color: Colors.yellowAccent.withOpacity(0.3),
-                                elevation: 5,
-                                shape: RoundedRectangleBorder(
-                                    borderRadius: BorderRadius.circular(15)),
-                                child: SunAndCountryDetails(
-                                  responseCurrent: responseCurrent,
-                                ),
-                              ),
+                            child:
+                                DetailsWidget(responseCurrent: responseCurrent),
+                          ),
+                        ), //details widget
+                        StaggeredGridTile.count(
+                          crossAxisCellCount: 1,
+                          mainAxisCellCount: 1.2,
+                          child: Card(
+                            color: Colors.yellowAccent.withOpacity(0.1),
+
+                            // elevation: 5,
+                            shape: RoundedRectangleBorder(
+                                borderRadius: BorderRadius.circular(15)),
+                            child: SunAndCountryDetails(
+                              responseCurrent: responseCurrent,
                             ),
-                            StaggeredGridTile.count(
-                              crossAxisCellCount: 2,
-                              mainAxisCellCount: 1,
-                              child: Card(
-                                color: Colors.greenAccent.withOpacity(0.3),
-                                elevation: 5,
-                                shape: RoundedRectangleBorder(
-                                    borderRadius: BorderRadius.circular(15)),
-                                child: ForecastWidget(),
-                              ),
+                          ),
+                        ),
+                        StaggeredGridTile.count(
+                          crossAxisCellCount: 1,
+                          mainAxisCellCount: 1.2,
+                          child: Card(
+                            color: Colors.red.withOpacity(0.2),
+                            // elevation: 5,
+                            shape: RoundedRectangleBorder(
+                                borderRadius: BorderRadius.circular(15)),
+                            child: TempWidget(
+                              responseCurrent: responseCurrent,
                             ),
-                          ],
+                          ),
+                        ),
+                        StaggeredGridTile.count(
+                          crossAxisCellCount: 2,
+                          mainAxisCellCount: 1,
+                          child: Card(
+                            color: Colors.greenAccent.withOpacity(0.3),
+                            elevation: 5,
+                            shape: RoundedRectangleBorder(
+                                borderRadius: BorderRadius.circular(15)),
+                            child: ForecastWidget(
+                              responseForecast: responseForecast,
+                            ),
+                          ),
                         ),
                       ],
                     ),
