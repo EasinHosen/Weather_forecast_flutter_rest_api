@@ -1,3 +1,5 @@
+const String weatherApiKey = 'b9f13813531c8de5fa68823c02403b88';
+
 const String metric = 'metric';
 const String imperial = 'imperial';
 const String celsius = 'C';
