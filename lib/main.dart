@@ -6,8 +6,12 @@ import 'package:weather_forecast/ui/pages/settings_page.dart';
 import 'package:weather_forecast/ui/pages/weather_page.dart';
 
 void main() {
-  runApp(ChangeNotifierProvider(
-      create: (_) => WeatherProvider(), child: const MyApp()));
+  runApp(
+    ChangeNotifierProvider(
+      create: (_) => WeatherProvider(),
+      child: const MyApp(),
+    ),
+  );
 }
 
 class MyApp extends StatelessWidget {

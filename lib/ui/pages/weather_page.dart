@@ -197,7 +197,7 @@ class _CitySearchDelegate extends SearchDelegate<String> {
           onPressed: () {
             query = '';
           },
-          icon: Icon(Icons.clear)),
+          icon: const Icon(Icons.clear)),
     ];
   }
 
@@ -207,13 +207,14 @@ class _CitySearchDelegate extends SearchDelegate<String> {
         onPressed: () {
           close(context, '');
         },
-        icon: Icon(Icons.clear));
+        icon: const Icon(Icons.clear));
+    return null;
   }
 
   @override
   Widget buildResults(BuildContext context) {
     return ListTile(
-      leading: Icon(Icons.search),
+      leading: const Icon(Icons.search),
       title: Text(query),
       onTap: () {
         close(context, query);
